@@ -1,0 +1,50 @@
+<navigation path="/" name="Springfield">
+
+	<navigation pattern="/sample/**"  path="/sample/person"  name="샘플" >
+		<navigation pattern="/sample/person/**" name="Person 예제" >
+			<navigation path="/sample/person"      name="목록 "  />
+			<navigation path="/sample/person/new"  name="신규"  />
+		</navigation>
+		
+		<navigation pattern="/basic/step2**" name="Finder" >
+			<navigation path="/basic/step21" name="FindByAgeBetween" />
+			<navigation path="/basic/step22"  name="FindByNameOrderByAgeDesc" />
+			<navigation path="/basic/step23"  name="FindByNameAndAge" />
+		</navigation>
+		<navigation pattern="/basic/step3/**"  name="Validation" >
+			<navigation path="/basic/step3/new"  name="New" />
+		</navigation>
+		<navigation pattern="/basic/step4/**" name="Locale" >
+			<navigation path="/basic/step4?locale=ko"  name="ko" />
+			<navigation path="/basic/step4?locale=en"  name="en" />
+		</navigation>
+		<navigation pattern="/basic/step5**" name="Views" >
+			<navigation path="/basic/step51.html"  name="Thymeleaf" />
+			<navigation path="/basic/step52.jstl"  name="JSP" />
+			<navigation path="/basic/step53.tiles"  name="Tiles" />
+			<navigation path="/basic/step54.json"  name="JSON" />
+			<navigation path="/basic/step55.xml"  name="XML" />
+			<navigation path="/basic/step56.xls"  name="speadsheet" />
+		</navigation>
+	</navigation>
+
+	
+	
+	<navigation pattern="/security/**" path="/security/user/loginForm.html" hide="true" accessible="true" access="hasRole('ROLE_ANONYMOUS')" name="security" >
+		<navigation name="user" >
+			<navigation pattern="/security/user/loginForm/**"  path="/security/user/loginForm.html"  name="LogIn" />
+			<navigation pattern="/security/user/forgot/**"     path="/security/user/forgot/new.html"  name="Forgot" />
+			<navigation pattern="/security/user/register/**"   path="/security/user/register/new.html"  name="register" />
+		</navigation>
+		<navigation name="member" >
+			<navigation pattern="/security/member/info/**"      access="hasRole('ROLE_USER')" path="/security/member/info/new.html"  name="info" />
+			<navigation pattern="/security/member/password/**"  access="hasRole('ROLE_USER')" path="/security/member/password/new.html"  name="password" />
+			<navigation pattern="/security/member/leave/**"     access="hasRole('ROLE_USER')" path="/security/member/leave/new.html"  name="leave" />
+		</navigation>
+		<navigation name="admin" >
+			<navigation pattern="/security/admin/authority/**" accessible="true" access="hasRole('ROLE_ADMIN')" path="/security/admin/authority.html"  name="authority" />
+			<navigation pattern="/security/admin/member/**"    accessible="true" access="hasRole('ROLE_ADMIN')" path="/security/admin/member.html"  name="member" />
+		</navigation>
+	</navigation>
+</navigation>
+<!-- "hasRole('ROLE_USER') and isFullyAuthenticated()" -->

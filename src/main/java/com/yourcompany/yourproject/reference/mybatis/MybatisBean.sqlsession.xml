@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yourcompany.yourproject.reference.mybatis.MybatisBean">
+
+	<resultMap type="com.yourcompany.yourproject.reference.mybatis.MybatisBean" id="entityType"/>
+
+	<select id="exists" parameterType="map" resultType="integer">
+		select count(id) from MybatisBean 
+		<if test="id != null">where id = #{id}</if>
+		<if test="id == null">where id = #{entity.id}</if>
+	</select>
+
+	<select id="findOne" parameterType="map" resultMap="entityType">
+		select * from MybatisBean 
+		<if test="id != null">where id = #{id}</if>
+		<if test="id == null">where id = #{entity.id}</if>
+	</select>
+
+	<update id="update" parameterType="map">
+		update MybatisBean set 
+		password = #{entity.password}
+		where id = #{entity.id}
+	</update>
+
+	<insert id="insert" parameterType="map">
+		 insert into MybatisBean ( id, password ) 
+		 values ( #{entity.id}, #{entity.password} )
+	</insert>
+
+
+	<delete id="delete" parameterType="map">
+		delete from MybatisBean
+		<if test="id != null">where id = #{id}</if>
+		<if test="id == null">where id = #{entity.id}</if>
+	</delete>
+
+
+	<select id="findAll" parameterType="map" resultMap="entityType">
+		select * from MybatisBean
+		<include refid="whereSyntax"/>
+		<!-- <include refid="orderSyntax"/> -->
+	</select>
+
+	<select id="countAll" parameterType="map" resultType="long">
+		select count(*) from MybatisBean 
+		<include refid="whereSyntax"/>
+	</select>
+
+	<delete id="deleteAll" parameterType="map">
+		delete from MybatisBean
+		<include refid="whereSyntax"/>
+	</delete>
+	
+	
+	<sql id="whereSyntax">
+		<if test="query != null">
+			<trim prefix="WHERE" prefixOverrides="AND |OR ">
+				<if test="query.id != null"> and id = #{query.id}</if> 
+				<if test="query.password != null">and password = #{query.password}</if>
+			</trim>
+		</if>
+	</sql>
+	
+	
+	<sql id="orderSyntax">
+		<if test="pageable != null and pageable.sort != null">
+			<trim prefix="order by" prefixOverrides=", ">
+				<foreach item="item" index="index" collection="pageable.sort">
+					${item.property} ${item.direction}
+				</foreach>
+			</trim>
+		</if>
+		<if test="sort != null">
+			<trim prefix="order by" prefixOverrides=", ">
+				<foreach item="item" index="index" collection="sort">
+					${item.property} ${item.direction}
+				</foreach>
+			</trim>
+		</if>
+	</sql>
+
+</mapper>

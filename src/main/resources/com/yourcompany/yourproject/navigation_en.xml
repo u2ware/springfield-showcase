@@ -1,0 +1,89 @@
+<navigation path="/" name="Springfield 예제">
+	<navigation pattern="/sample/**"  path="/sample/person"  name="Example" >
+
+		<navigation pattern="/sample/person/**" name="CRUD" >
+			<navigation path="/sample/person"      name="List"/>
+			<navigation path="/sample/person/new"  name="New"  />
+		</navigation>
+		
+		<navigation pattern="/sample/search**" name="Finder" >
+			<navigation path="/sample/search1" name="FindByAgeBetween" />
+			<navigation path="/sample/search2"  name="FindByName" />
+			<navigation path="/sample/search3"  name="MyPersonQuery" />
+		</navigation>
+		
+
+		<navigation pattern="/sample/locale/**"  name="Locale" >
+			<navigation path="/sample/locale?locale=ko"  name="Locale(ko)" />
+			<navigation path="/sample/locale?locale=en"  name="Locale(en)" />
+		</navigation>
+
+
+		<navigation pattern="/sample/validation/**"  name="Validation" >
+			<navigation path="/sample/validation/new"  name="CustomPerson" />
+		</navigation>
+
+		<navigation pattern="/sample/form/**" name="Form" >
+			<navigation path="/sample/form"      name="List"/>
+			<navigation path="/sample/form/new"  name="New"  />
+		</navigation>
+
+
+		<navigation pattern="/sample/views/**" name="Views" >
+			<navigation path="/sample/views.html"  name="Thymeleaf" />
+			<navigation path="/sample/views.jstl"  name="JSP" />
+			<navigation path="/sample/views.tiles"  name="Tiles" />
+			<navigation path="/sample/views.json"  name="JSON" />
+			<navigation path="/sample/views.xml"  name="XML" />
+			<navigation path="/sample/views.xls"  name="speadsheet" />
+		</navigation>
+	</navigation>
+
+	<navigation pattern="/reference/**"  path="/reference/jpa"  name="참조" >
+
+
+		<navigation pattern="/reference/jpa/**" name="ORM(JPA)" >
+			<navigation path="/reference/jpa"      name="List"/>
+			<navigation path="/reference/jpa/new"  name="New"  />
+		</navigation>
+
+		<navigation pattern="/reference/hibernate/**" name="ORM(Hibernate)" >
+			<navigation path="/reference/hibernate"      name="List"/>
+			<navigation path="/reference/hibernate/new"  name="New"  />
+		</navigation>
+
+		<navigation pattern="/reference/mybatis/**" name="ORM(Mybatis)" >
+			<navigation path="/reference/mybatis"      name="List"/>
+			<navigation path="/reference/mybatis/new"  name="New"  />
+		</navigation>
+
+		<navigation pattern="/reference/multipart1/**" name="File Upload(1)" >
+			<navigation path="/reference/jdbc"      name="List"/>
+			<navigation path="/reference/jdbc/new"  name="New"  />
+		</navigation>
+
+		<navigation pattern="/reference/multipart2/**" name="File Upload(2)" >
+			<navigation path="/reference/multipart2"      name="List"/>
+			<navigation path="/reference/multipart2/new"  name="New"  />
+		</navigation>
+
+	</navigation>
+
+
+	<navigation pattern="/security/**" path="/security/user/loginForm.html" hide="true" accessible="true" access="hasRole('ROLE_ANONYMOUS')" name="보안" >
+		<navigation name="user" >
+			<navigation pattern="/security/user/loginForm/**"  path="/security/user/loginForm.html"  name="LogIn" />
+			<navigation pattern="/security/user/register/**"   path="/security/user/register/new.html"  name="register" />
+			<navigation pattern="/security/user/forgot/**"     path="/security/user/forgot/new.html"  name="Forgot" />
+		</navigation>
+		<navigation name="member" >
+			<navigation pattern="/security/member/info/**"      access="hasRole('ROLE_USER')" path="/security/member/info/who/edit.html"  name="info" />
+			<navigation pattern="/security/member/password/**"  access="hasRole('ROLE_USER')" path="/security/member/password/who/edit.html"  name="password" />
+			<navigation pattern="/security/member/leave/**"     access="hasRole('ROLE_USER')" path="/security/member/leave/who/edit.html"  name="leave" />
+		</navigation>
+		<navigation name="admin" >
+			<navigation pattern="/security/admin/member/**"    accessible="true" access="hasRole('ROLE_ADMIN')" path="/security/admin/member.html"  name="management" />
+		</navigation>
+	</navigation>
+</navigation>
+<!-- "hasRole('ROLE_USER') and isFullyAuthenticated()" -->
