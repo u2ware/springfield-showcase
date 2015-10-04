@@ -12,4 +12,6 @@
 /.settings/
 .project
 .classpath
+
 .springBean
+.externalToolBuilders
