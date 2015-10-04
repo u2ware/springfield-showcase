@@ -5,6 +5,11 @@
 *.war
 *.ear
 
-target/
+/target/
 
-recycle/
+/recycle/
+
+/.settings/
+.project
+.classpath
+.springBean
